@@ -5,15 +5,15 @@ android {
     signingConfigs {
         debug {
             storeFile file('../yusheng.jks')
-            storePassword 'yusheng'
-            keyAlias = 'yusheng'
-            keyPassword 'yusheng'
+            storePassword STORE_PASSWORD
+            keyAlias = STORE_PASSWORD
+            keyPassword STORE_PASSWORD
         }
         release {
             storeFile file('../yusheng.jks')
-            storePassword 'yusheng'
-            keyAlias = 'yusheng'
-            keyPassword 'yusheng'
+            storePassword STORE_PASSWORD
+            keyAlias = STORE_PASSWORD
+            keyPassword STORE_PASSWORD
         }
     }
     compileSdkVersion 30
