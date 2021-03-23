@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    signingConfigs {
+        debug {
+            storeFile file('../yusheng.jks')
+            storePassword 'yusheng'
+            keyAlias = 'yusheng'
+            keyPassword 'yusheng'
+        }
+        release {
+            storeFile file('../yusheng.jks')
+            storePassword 'yusheng'
+            keyAlias = 'yusheng'
+            keyPassword 'yusheng'
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+    defaultConfig {
+        applicationId "com.saltedfish.yusheng"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+    implementation 'me.luzhuo.java.android:lib_okhttp:1.0.7-SNAPSHOT'
+
+//    implementation project(path: ':lib_tencent')
+     implementation 'me.luzhuo.android:lib_tencent:1.1.2-SNAPSHOT'
+    implementation 'me.luzhuo.android:lib_core:2.0.1-SNAPSHOT'
+
+    annotationProcessor 'me.luzhuo.android:lib_compiler:1.0.5-SNAPSHOT'
+    compileOnly 'me.luzhuo.android:lib_compiler:1.0.5-SNAPSHOT'
+}

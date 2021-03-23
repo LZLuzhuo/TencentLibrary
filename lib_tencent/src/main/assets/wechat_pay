@@ -1,0 +1,43 @@
+1.
+annotationProcessor 'me.luzhuo.java.android:lib_compiler:1.0.3-SNAPSHOT'
+compileOnly 'me.luzhuo.java.android:lib_compiler:1.0.3-SNAPSHOT'
+implementation 'me.luzhuo.java.android:lib_tencent:1.0.1-SNAPSHOT'
+
+2.
+<!-- 微信支付 -->
+<activity
+    android:name="${applicationId}.wxapi.WXPayEntryActivity"
+    android:label="@string/app_name"
+    android:theme="@android:style/Theme.Translucent.NoTitleBar"
+    android:exported="true"
+    android:taskAffinity="${applicationId}"
+    android:launchMode="singleTask">
+</activity>
+
+3.
+@WeixinPay(applicationId = BuildConfig.APPLICATION_ID, entryTemplete = WechatPayTemplate.class)
+public class App extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        WechatManager.init("wxb546013460427555");
+    }
+}
+
+
+4.
+public void wechatPay(View view) {
+    WechatManager wechat = WechatManager.getInstance(this);
+    wechat.setOnPayCallback(new IWechatCallback() {
+        @Override
+        public void onSuccess(String successMessage) {
+            Log.e(TAG, "支付成功");
+        }
+
+        @Override
+        public void onError(String errMessage) {
+            Log.e(TAG, "支付失败");
+        }
+    });
+    wechat.pay("1557796771", "wx25205935184438d4a88c93f51146037200", "R2Gw3phu5KMzMWBr", "1590411575", "53C5477A0892BFD2B15627DD5DCE1C8545687CC534A8E09D4365A572C4C54A05");
+}
