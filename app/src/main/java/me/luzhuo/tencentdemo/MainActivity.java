@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         // 分享视频
         // wechat.share(new VideoMessage(this, "https://vdept.bdstatic.com/5846443970506b655764664834687537/35506d4e50576843/e610799b39f3c277bd7e6a2126a1211ce016cf0ceb260b5f5557d606d020bca4c53e7fe1de9a15cbc4e94bf5d6f5fda3f4101f828384ede0865741a81d17e5ae.mp4?auth_key=1594552495-0-0-d893d9d8b6118bdc4e94a62d855ebcc6", "这是标题哟", "这是描述哟", R.mipmap.image), WechatShareWhere.Collect);
         // 分享Web页
-        // wechat.share(new WebMessage(this, "http://www.qq.com", "这是标题哟", "这是描述哟", R.mipmap.image), WechatShareWhere.Friend);
+         wechat.share(new WebMessage(this, "http://www.qq.com", "这是标题哟", "这是描述哟", R.mipmap.image), WechatShareWhere.Friend);
 
         // 以网路图片作为封面
         /*Request request = new Request.Builder().url("http://b-ssl.duitang.com/uploads/item/201608/29/20160829203548_YHJjV.thumb.700_0.jpeg").build();
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        OKHttpManager okHttpManager = new OKHttpManager();
+        /*OKHttpManager okHttpManager = new OKHttpManager();
         okHttpManager.getBitmap("http://b-ssl.duitang.com/uploads/item/201608/29/20160829203548_YHJjV.thumb.700_0.jpeg", new IBitmapCallback() {
             @Override
             public void onSuccess(int i, Bitmap bitmap) {
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onError(int i, String s) {
                 ToastManager.show(MainActivity.this, "下载图片失败");
             }
-        });
+        });*/
     }
 
     /**

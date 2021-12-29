@@ -25,7 +25,7 @@ android {
 
 dependencies {
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5.2'
-    compileOnly 'me.luzhuo.android:lib_core:2.0.1-SNAPSHOT'
+    compileOnly 'me.luzhuo.android:lib_core:2.2.15-SNAPSHOT'
 }
 
 apply from: 'maven.gradle'
