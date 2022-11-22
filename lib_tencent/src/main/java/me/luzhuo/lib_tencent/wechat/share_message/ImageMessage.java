@@ -17,12 +17,13 @@ package me.luzhuo.lib_tencent.wechat.share_message;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.Toast;
 
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 
 import java.io.File;
+
+import me.luzhuo.lib_core.ui.toast.ToastManager;
 
 public class ImageMessage extends ShareMessage {
     private WXMediaMessage msg;
@@ -34,7 +35,7 @@ public class ImageMessage extends ShareMessage {
     public ImageMessage(Context context, String imageFilePath){
         File file = new File(imageFilePath);
         if (!file.exists()) {
-            Toast.makeText(context, "分享的文件不存在!", Toast.LENGTH_SHORT).show();
+            ToastManager.show(context, "分享的文件不存在!");
             return;
         }
 

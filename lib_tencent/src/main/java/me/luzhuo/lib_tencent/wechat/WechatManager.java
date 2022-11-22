@@ -15,21 +15,15 @@
 package me.luzhuo.lib_tencent.wechat;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.widget.Toast;
 
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
-import com.tencent.mm.opensdk.modelmsg.WXImageObject;
-import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
-import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-import me.luzhuo.lib_tencent.wechat.IWechatCallback;
+import me.luzhuo.lib_core.ui.toast.ToastManager;
 import me.luzhuo.lib_tencent.wechat.enums.WechatShareWhere;
 import me.luzhuo.lib_tencent.wechat.share_message.ShareMessage;
 
@@ -123,8 +117,8 @@ public class WechatManager {
             throw new IllegalArgumentException("Please first initialize the APP_ID.");
 
         if (instance == null){
-            synchronized (WechatManager.class){
-                if (instance == null){
+            synchronized (WechatManager.class) {
+                if (instance == null) {
                     instance = new WechatManager(context, APP_ID);
                 }
             }
@@ -132,7 +126,7 @@ public class WechatManager {
         return instance;
     }
 
-    private WechatManager(Context context, String APP_ID){
+    private WechatManager(Context context, String APP_ID) {
         this.context = context;
 
         api = WXAPIFactory.createWXAPI(context.getApplicationContext(), APP_ID, true);
@@ -143,8 +137,8 @@ public class WechatManager {
         return api;
     }
 
-    public void login(){
-        if(!checkAppInstalled()) return;
+    public void login() {
+        if (!checkAppInstalled()) return;
 
         // send oauth request
         final SendAuth.Req req = new SendAuth.Req();
@@ -160,15 +154,15 @@ public class WechatManager {
         api.sendReq(req);
     }
 
-    public void pay(String partnerid, String prepayid, String noncestr, String timestamp, String sign){
-        if(!checkAppInstalled()) return;
+    public void pay(String partnerid, String prepayid, String noncestr, String timestamp, String sign) {
+        if (!checkAppInstalled()) return;
 
-        if(api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT){ }
-        else{
-            if(payCallback != null){
+        if (api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT) { }
+        else {
+            if (payCallback != null) {
                 payCallback.onError("当前版本的微信不支持微信支付");
-            }else{
-                Toast.makeText(context, "当前版本的微信不支持微信支付", Toast.LENGTH_SHORT).show();
+            } else {
+                ToastManager.show(context, "当前版本的微信不支持微信支付");
             }
             return;
         }
@@ -189,7 +183,7 @@ public class WechatManager {
      * Sharing is only successful, there is no failure, so there is no callback.
      */
     public void share(ShareMessage message, WechatShareWhere shareWhere) {
-        if(!checkAppInstalled()) return;
+        if (!checkAppInstalled()) return;
 
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         // Custom tag
@@ -208,17 +202,17 @@ public class WechatManager {
         this.payCallback = callback;
     }
 
-    public void callLoginSuccess(String code){
-        if(loginCallback != null) loginCallback.onSuccess(code);
+    public void callLoginSuccess(String code) {
+        if (loginCallback != null) loginCallback.onSuccess(code);
     }
-    public void callLoginError(String error){
-        if(loginCallback != null) loginCallback.onError(error);
+    public void callLoginError(String error) {
+        if (loginCallback != null) loginCallback.onError(error);
     }
-    public void callPaySuccess(String message){
-        if(payCallback != null) payCallback.onSuccess(message);
+    public void callPaySuccess(String message) {
+        if (payCallback != null) payCallback.onSuccess(message);
     }
-    public void callPayError(String message){
-        if(payCallback != null) payCallback.onError(message);
+    public void callPayError(String message) {
+        if (payCallback != null) payCallback.onError(message);
     }
 
     /**
@@ -227,10 +221,10 @@ public class WechatManager {
      */
     private boolean checkAppInstalled() {
         if (!api.isWXAppInstalled()) {
-            if(loginCallback != null){
+            if (loginCallback != null) {
                 loginCallback.onError("请先安装微信客户端");
-            }else{
-                Toast.makeText(context, "请先安装微信客户端", Toast.LENGTH_SHORT).show();
+            } else {
+                ToastManager.show(context, "请先安装微信客户端");
             }
             return false;
         }
