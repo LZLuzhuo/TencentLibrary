@@ -3,16 +3,16 @@ Tencent库
 # 1. 导包
 
 ```groovy
-implementation 'me.luzhuo.android:lib_tencent:1.1.2-SNAPSHOT'
-
+implementation 'me.luzhuo.android:lib_tencent:1.1.9'
 annotationProcessor 'me.luzhuo.android:lib_compiler:1.0.5'
 compileOnly 'me.luzhuo.android:lib_compiler:1.0.5'
-implementation 'me.luzhuo.android:lib_core:2.0.1-SNAPSHOT'
+
+implementation 'me.luzhuo.android:lib_core:2.5.89'
 ```
 
 # 2. 使用文档
 
-https://www.yuque.com/luzhuo/library
+https://www.yuque.com/luzhuo/library/lib_tencent
 
 # 3. 版权
 

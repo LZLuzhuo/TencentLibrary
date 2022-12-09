@@ -16,3 +16,4 @@ gradle.properties
 *maven.gradle
 *jcenter.gradle
 *.jks
+*mavenCentral.gradle
